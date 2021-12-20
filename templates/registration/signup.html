@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+ 
+{% block title %}
+
+Signup
+
+{% endblock %}
+
+{% block body %}
+
+    <h1 style="text-align: center;">Sign up</h1>
+
+    <div class="container">
+        <div class="jumbotron signup-jumbo">
+            {% if registered %}
+                <h1>Thankyou for REGISTERING with us</h1>
+            <a href="{% url 'homepage:home' %}"> click here to continue </a>
+
+            {% else %}
+                <!-- user the enctype attribute because we are uploading images  -->
+                <form enctype="multipart/form-data" method="POST">
+                    <div class="container sign-form">
+                        {% csrf_token %}
+                        
+                        {{ user_form |as_bootstrap  }}
+                        {{ user_profileform |as_bootstrap  }}
+
+
+                    
+                        <!-- {{ user_profileform.as_p }} -->
+                        <button class="btn btn-outline-primary signup-button" type="submit"> Signup </button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

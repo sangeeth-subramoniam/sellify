@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+Cart_Home
+
+{% endblock %}
+
+
+{% block body %}
+
+<br>
+
+<div class="featured-title">
+        
+    <hr class="featured-hrline" >
+
+    <div class="featured-header">
+        <h5><i class="fas fa-shopping-cart cart-icon"></i> CART </h5>
+    </div>
+
+    <div class="featured-text">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente suscipit libero repellendus sint minus, iure, ut accusamus laborum quam explicabo sit! Aliquam asperiores soluta in?
+    </div>
+</div>
+    <br>
+
+    <div class="all_categories">
+        <div class="jumbotron all_categories_jumbo">
+            <div class="row">
+                <h3 style="text-align: center; width: 100%; ">CART</h3>
+            </div>
+            <hr style="width: 10%; margin: 1% 45%">
+
+            <br><br>
+
+            <div class="row">
+
+                {% for pdts in user_cart %}
+
+                <div class="col-lg-8 cart-pdt-space-text">
+                    <h1 class="cart_item_title"> {{pdts.id}} {{pdts.cart_product.shop_product_name}} </h1>
+                    <br>
+                    <h4 class="cart_item_title">{{pdts.cart_user}}</h4>
+                    <h6 class="cart_item_title">{{pdts.created_at}}</h6>
+                    <h6 class="cart_item_title">STATUS : {{pdts.cart_status}}</h6>
+                    <h6 class="cart_item_title"> <span style="font-size: 1.5em;">{{pdts.cart_product.shop_product_cost}}¥ </span></h6>
+                </div>
+                
+                <div class="col-lg-4 cart-pdt-space-image">
+                    <a href="{% url 'product:shop_product_detail' pdts.cart_product.id %} "><img class="cart_image" src="{{ pdts.cart_product.shop_product_image.url }}" alt="IMG NOT AVAILABLE"></a>
+                </div>
+
+                <br>
+                
+                {%empty%}
+
+                    <h4 class="allpdt-pdtspace-empty-text" style="width: 100% ;text-align: center;"> CART EMPTY! ADD ITEMS TO CART </h4>
+
+                {% endfor %}
+
+            </div>
+            <div class="cart_total">
+                <h3> TOTAL : {{cart_sum}}¥ </h3>
+            </div>
+        </div>
+        {% if user_cart %}
+            <button class="btn btn-outline-primary cart-place-order"> <a href="{% url 'cart:place_order' %}" class="place-order-link" > PLACE ORDER </a></button>
+        {% else %}
+        <button class="btn btn-outline-primary cart-place-order" style="cursor: not-allowed;"> PLACE ORDER </button>
+        {% endif %}
+    </div>
+
+{% endblock %}

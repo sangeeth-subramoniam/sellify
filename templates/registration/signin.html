@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %} Login Page {% endblock %}
+
+{% block body%}
+    <h1 style="text-align: center;">Sign in</h1>
+    <br>
+    <div class="container">
+        {% if signin_error %}
+            <h4 style="display: inline-block; width: 100%; color:red; text-align: center; font-family: 'Roboto', sans-serif;">{{ signin_error }}</h4>
+        {% endif %}
+    <div class="jumbotron signin-jumbo">
+        <h2>Please sign in :</h2>
+        <br>
+        <form action="{% url  'registration:signin' %}" method="POST">
+
+            {% csrf_token %}
+            <label for="username"> UserName </label>
+            <input type="text" name = "username" placeholder="Enter the Username "  >
+
+            <br>
+            <br>
+
+            <label for="password"> Password </label>
+            <input type="password" name = "password" placeholder="enter the password "  >
+
+            <br>
+            <br>
+
+            <button class="btn btn-outline-primary signin-button" type="submit"> Signin </button>
+            
+            <br><br>
+
+            <div class="row signin-options ">
+                <div class="col-lg-6">
+                    <a href="{% url 'registration:signup' %}"> signup </a>
+                </div>
+
+                <div class="col-lg-6">
+                    <a href="#"> Forgot Password </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+

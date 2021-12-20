@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+Cart_Home
+
+{% endblock %}
+
+
+{% block body %}
+
+<br>
+
+<div class="featured-title">
+        
+    <hr class="featured-hrline" >
+
+    <div class="featured-header">
+        <h5><i class="fas fa-shopping-cart cart-icon"></i> CART </h5>
+    </div>
+
+    <div class="featured-text">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente suscipit libero repellendus sint minus, iure, ut accusamus laborum quam explicabo sit! Aliquam asperiores soluta in?
+    </div>
+</div>
+    <br>
+
+    <div class="all_categories">
+        <div class="jumbotron all_categories_jumbo">
+            <div class="row">
+                <h3 style="text-align: center; width: 100%; ">MY ORDERS</h3>
+            </div>
+            <hr style="width: 10%; margin: 1% 45%">
+
+            <br><br>
+
+
+                {% for ord in orders %}
+                <div class="jumbotron">
+                    <div class="col-lg-12">
+                        <h1 style="text-align: center;">Order Created ON : {{ ord.created_at }}</h1>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        {% for pdtimg in ord.order_products.all %}
+                            <div class="col-lg-4">
+                                <a href="{% url 'product:shop_product_detail' pdtimg.id %}"><img class="order_image" src="{{pdtimg.shop_product_image.url}}" alt="broken"></a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="cart_total"><h4>{{ord.order_cost}}¥</h4></div>
+                </div>     
+                
+                <br><br>
+                {% endfor %}
+            </div>
+        </div>
+        <h4 style="text-align: center; font-family: 'Roboto', sans-serif; font-weight: bold;">THANK YOU FOR BEING A VALUABLE CUSTOMER !</h4>
+    </div>
+
+{% endblock %}

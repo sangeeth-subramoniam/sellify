@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+ORDER PLACED
+
+{% endblock %}
+
+
+{% block body %}
+
+<script>
+    $(document).ready(function() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Your Order has been placed !',
+            showConfirmButton: false,
+            timer: 3000
+        })
+    });
+
+    window.setTimeout(function () {
+        location.href = "/";
+    }, 3200);
+
+</script>
+
+{% endblock %}

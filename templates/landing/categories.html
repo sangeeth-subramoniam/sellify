@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+Homepage
+
+{% endblock %}
+
+
+{% block body %}
+
+<br>
+
+<div class="featured-title">
+        
+    <hr class="featured-hrline" >
+
+    <div class="featured-header">
+        <h5>All Categories </h5>
+    </div>
+
+    <div class="featured-text">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente suscipit libero repellendus sint minus, iure, ut accusamus laborum quam explicabo sit! Aliquam asperiores soluta in?
+    </div>
+</div>
+    <br>
+
+    <div class="all_categories">
+        <div class="jumbotron all_categories_jumbo">
+            <div class="row">
+                {% for cat in categories %}
+                    <div class="col-lg-6">
+                            <button class="btn btn-outline-primary all_categories_items"><a class="all_categories_items_link" href="{% url 'product:shop_product_category' cat.id %}"> {{ cat.category_name }} </a></button>
+                    </div>
+                {% endfor %}    
+            </div>
+                        
+        </div>
+    </div>
+
+{% endblock %}

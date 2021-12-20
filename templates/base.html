@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>{% block title %}  {%endblock%}</title>
+
+</head>
+<body>
+<div class="row nav">
+    {% if user.is_authenticated %}
+        <div class="col-lg-11 nav-infobar">
+            <p class="nav-infobar-text">Buy and Sell with care! Respect Everyone and make safe transactions!</p>
+        </div> 
+        <div class="col-lg-1 nav-infobar"> 
+            <a href="{% url 'cart:view_orders' %}" style="text-decoration: none !important;"><p class="nav-infobar-text orders" >MY ORDERS</p></a>
+        </div>
+    {% else %}
+        <div class="col-lg-12 nav-infobar">
+            <p class="nav-infobar-text">Buy and Sell with care! Respect Everyone and make safe transactions!</p>
+        </div>
+    {% endif %}
+
+    <div class="authentication">
+
+        {% if user.is_authenticated %}
+            <h5 class="welcomeuser"> Welcome, <span style="color: rgb(37, 139, 208); font-family: 'Roboto', sans-serif;font-weight: bold;">{{user.username}}</span><a href="{% url 'registration:signout' %}" class="logout"><i class="fas fa-sign-out-alt"></i>Logout</a> <span class="cart-icon-span"><a class="cart-link" href="{% url 'cart:cart_home'%}"><i class="fas fa-shopping-cart cart-icon"> <span class="cart-count" > {{cart_count}} </span> </span></i></a></h5>
+        {% else %}
+
+            <a href="{% url 'registration:signin' %}">
+                <button class="btn btn-outline-primary authentication-signin-button">
+                    Signin
+                </button>
+            </a>
+
+            <a href="{% url 'registration:signup' %}">
+                <button class="btn btn-outline-primary authentication-signup-button">
+                    Signup
+                </button>
+            </a>
+
+            <a href="#">
+                <button class="btn btn-primary cart-button">
+                    <i class="fas fa-shopping-cart cart"></i>
+                </button>
+            </a>
+        {% endif %}
+    </div>
+
+    <div class="nav-logo">
+        <h3><a href="/"><i class="fas fa-3x fa-boxes nav-logo-image"></i></a></h3><br>
+    </div>
+    <hr class="logo-hr">
+    <div class="col-lg-12">
+        <nav class="navbar navbar-expand-lg navs">
+                <div class="row nav-items-row">
+                    <div class="col-lg-3">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/"> Home <span class="sr-only">(current)</span></a>
+                        </li>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'homepage:categories' %}">Categories</a>
+                        </li>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'product:shop' %}">Shop</a>
+                        </li>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'product:sell' %}">Sell</a>
+                        </li>
+                    </div>
+
+                </div>
+        </nav>
+    </div>
+
+</div>
+
+
+
+<div class="body">
+    {% block body %}
+
+    {% endblock %}
+</div>
+
+
+<div class="subscribepane">
+    <div class="subscontent">
+        <h1><hr class="subs-hrline" ></h1>
+        <h3 class="subscribe-head" >Subscribe to SANGEETH now!</h3>
+        <br>
+        <h5 class="subscribe-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic soluta beatae itaque unde quam aliquid delectus impedit. Necessitatibus, similique deserunt?
+        </h5>
+    
+        <form action="{% url 'homepage:subscription' %}" method="post" id=subs-form>
+            {% csrf_token %}
+            <div class="row subcsc " >
+                <div class="col-lg-6">
+                    <input type="email" class="form-control-lg subs-form-email" name="subsemail" id="subsemail" placeholder="Your Email..." required>
+                </div>
+
+                <div class="col-lg-6">
+                    <button class = "btn btn-primary subs-button" id="subscribe-button" type="submit">Subscribe now</button>
+                </div>
+            </div>
+            
+
+        </form>
+    
+    </div>
+</div>
+
+<br><br>
+
+<div class = "endicons" >
+    <div class="endicons-options">
+        <div class="row endicons-row">
+
+            <div class="col-sm-1 endicons-options-cells ">
+            </div>
+            
+            <div class="col-sm-2 endicons-options-cells">
+                <p class="endicons-options-links-text"><a href="{% url 'homepage:home' %}" class="endicons-options-links">HOME</a></p>
+            </div>
+
+            <div class="col-sm-2 endicons-options-cells">
+                <p class="endicons-options-links-text"><a href="{% url 'homepage:contactus' %}" class="endicons-options-links">HELP</a></p>
+            </div>
+
+            <div class="col-sm-2 endicons-options-cells">
+                <p class="endicons-options-links-text"><a href="#" class="endicons-options-links">PRIVACY POLICY</a></p>
+            </div>
+
+            <div class="col-sm-2 endicons-options-cells">
+                <p class="endicons-options-links-text"><a href="#" class="endicons-options-links">HOW IT WORKS?</a></p>
+            </div>
+
+            <div class="col-sm-2 endicons-options-cells">
+                <p class="endicons-options-links-text"><a href="{% url 'homepage:contactus' %}" class="endicons-options-links">CONTACT US</a></p>
+            </div>
+
+            <div class="col-sm-1 endicons-options-cells">
+                
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <div class="social">
+        <div class="row">
+            <div class="col-lg-4">
+            </div>
+
+            <div class="col-lg-4 social-icon-cells">
+                <a href="#"><i class="fab fa-twitter social-icons"></i></a>
+                <a href="#"><i class="fab fa-facebook social-icons"></i></a>
+                <a href="#"><i class="fab fa-instagram social-icons"></i></a>
+            </div>
+
+            <div class="col-lg-4">
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+    
+    <hr>
+    <br>
+
+    <div class="copyright">
+        <p>COPYRIGHT © 2021 SELLIFY - Design: <span class="designer-name"> <a href="https://www.instagram.com/sangeeth_subramoniam" target="_blank">  Sangeeth </a></span></p>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+<script>
+    document.body.style.zoom="80%"
+</script>
+</body>
+</html>

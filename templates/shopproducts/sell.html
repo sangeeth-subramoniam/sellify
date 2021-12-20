@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+All Products
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="shop-featured-title">
+        
+    <hr class="shop-hrline" >
+
+    <div class="featured-header">
+        <h5>SELL</h5>
+    </div>
+
+    <div class="featured-text">
+        Please use the form below to describe the product in a simple and easy to understand manner, <br>
+        So that it is easier for people to discover and to understand
+    </div>
+</div>
+
+<div class="sell-block">
+
+    <h2 class = "sell-form-header">STEP 1 : UPLOAD IMAGES </h2>
+    <p>(Atleast 1 file is mandatory)</p>
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-lg-6">
+                <span class="Required-asterisk" style="color: red;">*</span><input type="file" class="imguploaderbox" id="image1" name="image1" accept="image/*" required/><br/>
+            </div>
+
+            <div class="col-lg-6">
+                <input type="file" class="imguploaderbox" id="image2" name="image2" accept="image/*"/><br/>
+            </div>
+
+            <div class="col-lg-6">
+                <input type="file" class="imguploaderbox" id="image3" name="image3" /><br/>
+            </div>
+
+            <div class="col-lg-6">
+                <input type="file" class="imguploaderbox" id="image4" name="image4" /><br/>
+            </div>
+        </div>
+
+        <div class="row sell-display-uploaded">
+            <div class="col-lg-6 jumbotron imgupload1">
+                <div id="frames1" style="display: inline-block; width: 100%; height:40vh;">
+                </div>
+            </div>
+
+            <div class="col-lg-6 jumbotron imgupload2">
+                <div id="frames2" style="display: inline-block; width: 100%; height:40vh;">
+                </div>
+            </div>
+
+            <div class="col-lg-6 jumbotron imgupload3">
+                <div id="frames3" style="display: inline-block; width: 100%; height:40vh;">
+                </div>
+            </div>
+
+            <div class="col-lg-6 jumbotron imgupload4">
+                <div id="frames4" style="display: inline-block;  width: 100%; height:40vh;">
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        
+        <h2 class = "sell-form-header">STEP 2 : PRODUCT DETAILS </h2>
+        <br>
+        <br>
+        <input type="text" class = "form-control" name="pdtname" id="pdtname" placeholder="Enter the Product Title" required>
+        <br>
+        <select  class="form-control" name="category" id="category" multiple>
+            {% for cat in cats %}
+                <option value={{cat.id}}> {{cat.category_name}} </option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <textarea class = "form-control" placeholder="Write a simple description (20 to 500 characters)" minlength="20" name="pdtdesc" id="pdtdesc" rows="6" required></textarea>
+        
+        <br>
+        <input type="number" class = "form-control" name="pdtcost" id="pdtcost" placeholder="Cost" min="1" max="100000" required>
+        <br>
+        <h5 class = "read_terms"> *Make sure to read the <a href="#" target="_blank">terms and conditions</a> before posting your product!</h5>
+        <input type="submit" class = "form-control btn btn-outline-primary" style="width: 70%; margin: 1% 15%" value="POST" onclick="return confirm ('Are you sure you want to post this item to sell ? Make sure you have read the T&C !')">
+
+    </form>
+
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        $('#image1').change(function(){
+
+            const file = this.files[0];
+            const  fileType = file['type'];
+            const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+            if (!validImageTypes.includes(fileType)) {
+                alert('WARNING : The uploaded file does not seem to be a supported image format!')
+            }
+
+            $("#frames1").html('');
+            for (var i = 0; i < $(this)[0].files.length; i++) {
+                $("#frames1").append('<img src="'+window.URL.createObjectURL(this.files[i])+'" width="100% !important" height="100% !important" alt="unsupportedFile" />');
+            }
+        });
+
+        $('#image2').change(function(){
+            $("#frames2").html('');
+            for (var i = 0; i < $(this)[0].files.length; i++) {
+                $("#frames2").append('<img src="'+window.URL.createObjectURL(this.files[i])+'"  width="100% !important" height="100% !important" alt="unsupportedFile"/>');
+            }
+        });
+
+        $('#image3').change(function(){
+            $("#frames3").html('');
+            for (var i = 0; i < $(this)[0].files.length; i++) {
+                $("#frames3").append('<img src="'+window.URL.createObjectURL(this.files[i])+'"  width="100% !important" height="100% !important" alt="unsupportedFile"/>');
+            }
+        });
+
+        $('#image4').change(function(){
+            $("#frames4").html('');
+            for (var i = 0; i < $(this)[0].files.length; i++) {
+                $("#frames4").append('<img src="'+window.URL.createObjectURL(this.files[i])+'"  width="100% !important" height="100% !important" alt="unsupportedFile"/>');
+            }
+        });
+
+
+    });
+
+    $('option').mousedown(function(e) {
+        e.preventDefault();
+        var originalScrollTop = $(this).parent().scrollTop();
+        console.log(originalScrollTop);
+        $(this).prop('selected', $(this).prop('selected') ? false : true);
+        var self = this;
+        $(this).parent().focus();
+        setTimeout(function() {
+            $(self).parent().scrollTop(originalScrollTop);
+        }, 0);
+        
+        return false;
+    });
+
+</script>
+{% endblock %}

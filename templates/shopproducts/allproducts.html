@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+All Products
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="shop-featured-title">
+        
+    <hr class="shop-hrline" >
+
+    <div class="featured-header">
+        <h5>SHOP</h5>
+    </div>
+
+    <div class="featured-text">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente suscipit libero repellendus sint minus, iure, ut accusamus laborum quam explicabo sit! Aliquam asperiores soluta in?
+    </div>
+</div>
+
+<div class="all-products-conditions">
+
+    <form action="{% url 'product:shop' %}" method="post">
+        {% csrf_token %}
+
+            {% for field in form %}
+            <div class="form-group">
+                {{ field }}
+            </div>
+            {% endfor %}
+
+            <button class="form-control btn btn-outline-primary" id = "all-products-conditions-search" type="submit">Search</button>
+
+        </div>
+
+        
+    </form>
+
+
+</div>
+
+{% if category_title %} <h3 style="text-align: center; font-weight: bold; text-transform: uppercase;">{{category_title}}</h3>  {% endif %}
+
+<div class="row all-products">
+    {% for pdt in all_shop_products %}
+
+    
+        <div class="col-lg-3 allpdt-pdtspace">
+            <a href="{% url 'product:shop_product_detail' pdt.id %}">
+                <div class="pdt">
+                    <div class="allpdt-pdt-image">
+                        <img class="allpdt-image-photo" src="{{pdt.shop_product_image.url}}" alt="brk">
+                    </div>
+
+                    <div class="allpdt-pdt-content">
+                        <h6>
+                            <h6>{{pdt.shop_product_name}}</h6>
+                            <p> <b>{{pdt.shop_product_cost}}¥</b> </p>
+                        </h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    {% empty %}
+    <div class="allpdt-pdtspace-empty">
+        <br>
+        <h4 class="allpdt-pdtspace-empty-text">Sorry! No products match the specified conditions at the moment</h4>
+        <h5 class="allpdt-pdtspace-empty-text">Try searching afain on different conditions</h5>
+    </div>
+    {% endfor %}
+
+</div>
+
+<div class="page-numbers">
+    <nav class="pagination-nav" aria-label="...">
+        <ul class="pagination justify-content-center">
+            
+            {% if all_shop_products.has_previous %}
+                <li class="page-item">
+                    <a href="{% url 'product:shop' %}?page={{all_shop_products.previous_page_number}}">
+                        <span class="page-link">Previous</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Previous</span>
+                </li>
+            {% endif %}
+            
+
+            {% if all_shop_products.has_previous %}
+                <li class="page-item">
+                    <a href="{% url 'product:shop' %}?page={{all_shop_products.previous_page_number }}">
+                        <span class="page-link">{{all_shop_products.number|add:"-1" }}</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            
+            <li class="page-item active">
+                <span class="page-link">{{all_shop_products.number}} <span class="sr-only">(current)</span></span>
+            </li>     
+            
+            {% if all_shop_products.has_next %}
+                <li class="page-item">
+                    <a href="{% url 'product:shop' %}?page={{all_shop_products.next_page_number }}">
+                        <span class="page-link">{{all_shop_products.number|add:"1" }}</span>
+                    </a>
+                </li>
+            {% endif %}   
+
+            
+            {% if all_shop_products.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'product:shop' %}?page={{all_shop_products.next_page_number }}">Next</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            {% endif %}
+        
+        
+        </ul>
+    </nav>
+</div>
+
+{% endblock %}
