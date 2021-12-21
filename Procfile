@@ -1,0 +1,1 @@
+web: gunicorn sellmystuffs.wsgi --log-file -

@@ -34,7 +34,7 @@ SECRET_KEY = 'q1370d$tg0qqq=inq%i58ujzv=l1j4-jcp*^)hyjz%_scg!v5c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sangeeth-sellify.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -59,6 +59,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -153,6 +156,7 @@ STATICFILES_DIRS = [
 ]
 
 #MEDIA
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/' 
 
