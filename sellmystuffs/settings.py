@@ -55,6 +55,9 @@ INSTALLED_APPS = [
     'homepage',
     'product',
     'cart',
+
+    # AWS S3
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -162,4 +165,28 @@ MEDIA_URL = '/media/'
 
 
 LOGIN_URL = '/register/signin'
+
+
+#S3 BUCKET CONFIG
+
+#AWS
+
+#during deploy use the below and set the confid variables in heroku since you cannot set environment vatriable in virtualenvv
+
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+#since using virtual env you cannot wasily get the environment variable, using directly
+#AWS_ACCESS_KEY_ID = 'AKIATVGSGRPIZ25LH36M'
+#AWS_SECRET_ACCESS_KEY = '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'
+
+
+AWS_STORAGE_BUCKET_NAME = 'sangeeth-sellify'
+
+#DJANGO STORAGES  FOR S3 SUPPORT
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 
