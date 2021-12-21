@@ -207,13 +207,15 @@ hr{
 
 
 .background1{
-    background: url("/static/images/bg1.jpg") 0% 0% no-repeat;
+    /* background: url("/static/images/bg1.jpg") 0% 0% no-repeat; */
+    
     background-size: cover;
     min-height: 120vh;
     margin: 0% 0%;
     padding: 0%;
     overflow-x: hidden;
     overflow-y: hidden;
+    background-color: #eee;
 }
 
 .bgtext{

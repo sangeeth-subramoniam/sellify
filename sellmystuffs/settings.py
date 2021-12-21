@@ -176,6 +176,7 @@ LOGIN_URL = '/register/signin'
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
+
 #since using virtual env you cannot wasily get the environment variable, using directly
 #AWS_ACCESS_KEY_ID = 'AKIATVGSGRPIZ25LH36M'
 #AWS_SECRET_ACCESS_KEY = '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'

@@ -57,7 +57,7 @@ def place_order(request):
 
 def view_orders(request):
 
-    orders = order.objects.all().filter(created_by = request.user)
+    orders = order.objects.all().filter(created_by = request.user).order_by('-created_at')
 
     context = {
         'orders' : orders

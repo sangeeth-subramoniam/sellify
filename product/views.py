@@ -84,7 +84,7 @@ def shop(request):
         
         if 'cat' in request.session and request.session['cat'] != '2':
             print('sort by category')
-            search_cat = shop_categories.objects.all().filter(id = request.session['cat'])
+            search_cat = shop_categories.objects.all().filter(category_name = request.session['cat'])
             all_shop_products = all_shop_products.filter(category__in = search_cat)
             category_title = search_cat.first().category_name
         else:
