@@ -37,6 +37,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['sangeeth-sellify.herokuapp.com','127.0.0.1']
 
 CSRF_COOKIE_DOMAIN = 'sangeeth-sellify.herokuapp.com'
+CSRF_TRUSTED_ORIGINS = ['https://sangeeth-sellify.herokuapp.com/register/signin']
 
 
 # Application definition
@@ -175,8 +176,15 @@ LOGIN_URL = '/register/signin'
 
 #during deploy use the below and set the confid variables in heroku since you cannot set environment vatriable in virtualenvv
 
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+#AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+#AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+AWS_ACCESS_KEY_ID = 'AKIATVGSGRPI25GHQBD5' 
+AWS_SECRET_ACCESS_KEY = '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'
+
+#since using virtual env you cannot wasily get the environment variable, using directly
+#AWS_ACCESS_KEY_ID = 'AKIATVGSGRPIZ25LH36M'
+#AWS_SECRET_ACCESS_KEY = '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'
 
 
 AWS_STORAGE_BUCKET_NAME = 'sangeeth-sellify'
