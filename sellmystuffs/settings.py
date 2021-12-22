@@ -32,7 +32,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'q1370d$tg0qqq=inq%i58ujzv=l1j4-jcp*^)hyjz%_scg!v5c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['sangeeth-sellify.herokuapp.com','127.0.0.1']
 
