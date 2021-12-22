@@ -18,7 +18,7 @@ def home(request):
 
     if request.user.is_authenticated:
         curruser = request.user
-        products = shop_products.objects.order_by("created_at")[:6]
+        products = shop_products.objects.order_by("-created_at")[:6]
 
 
         return render(request,'landing/homepage.html',{'curr_user' : curruser , 'products':products})
@@ -68,6 +68,15 @@ def about(request):
     return render(request, 'about.html')
 
 
+def privacy(request):
+    today = datetime.datetime.now()
+
+    context = {
+        'today' : today
+    }
+    return render(request, 'landing/privacy_policy.html' , context)
+
+
 
 def index(request):
     return render(request, 'index.html')
@@ -79,3 +88,4 @@ def about(request):
 
 def singleproduct(request):
     return render(request, 'single-product.html')
+

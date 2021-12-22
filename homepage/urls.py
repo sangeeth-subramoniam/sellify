@@ -14,4 +14,5 @@ urlpatterns = [
     path('contactus/', views.contactus , name = "contactus"),
     path('singleproduct/', views.singleproduct , name = "singleproduct"),
     path('subscribe/', views.subscription , name = "subscription"),
+    path('privacy/', views.privacy , name = "privacy"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
