@@ -32,12 +32,12 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'q1370d$tg0qqq=inq%i58ujzv=l1j4-jcp*^)hyjz%_scg!v5c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['sangeeth-sellify.herokuapp.com','127.0.0.1']
 
 CSRF_COOKIE_DOMAIN = 'sangeeth-sellify.herokuapp.com'
-CSRF_TRUSTED_ORIGINS = ['https://sangeeth-sellify.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['.herokuapp.com']
 
 
 # Application definition
