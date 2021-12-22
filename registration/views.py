@@ -9,7 +9,10 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
+@csrf_exempt
 def signup(request):
     if request.user.is_authenticated:
         return redirect('homepage:home')
@@ -57,7 +60,7 @@ def signup(request):
         
         return render(request, "registration/signup.html", {'user_form': user_form , 'user_profileform' : user_profileform, 'registered' : registered  } )
 
-
+@csrf_exempt
 def signin(request):
     if request.user.is_authenticated:
         return redirect('homepage:home')
