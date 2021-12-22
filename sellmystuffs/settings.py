@@ -37,7 +37,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['sangeeth-sellify.herokuapp.com','127.0.0.1']
 
 CSRF_COOKIE_DOMAIN = 'sangeeth-sellify.herokuapp.com'
-CSRF_TRUSTED_ORIGINS = ['https://sangeeth-sellify.herokuapp.com/register/signin']
+CSRF_TRUSTED_ORIGINS = ['https://sangeeth-sellify.herokuapp.com']
 
 
 # Application definition
@@ -178,8 +178,6 @@ LOGIN_URL = '/register/signin'
 
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID_NEW")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY_NEW")
-
-
 
 
 AWS_STORAGE_BUCKET_NAME = 'sangeeth-sellify'
