@@ -215,7 +215,7 @@ hr{
     padding: 0%;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-color: #eee;
+    background-color: rgb(83, 151, 196) !important;
 }
 
 .bgtext{
@@ -223,9 +223,9 @@ hr{
     font-size: 1.8em;
     padding: 2%;
     margin: 12.5% 0%;
-    width: 35%;
+    width: 50%;
     height: 75%;
-    margin-left: 15%;
+    margin-left: 20%;
     border-radius: 5%;
     background-color: #f8f9fa;
 }
