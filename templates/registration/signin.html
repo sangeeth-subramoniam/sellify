@@ -12,7 +12,6 @@
         <h2>Please sign in :</h2>
         <br>
         <form action="{% url  'registration:signin' %}" method="POST">
-
             {% csrf_token %}
             <label for="username"> UserName </label>
             <input type="text" name = "username" placeholder="Enter the Username "  >
