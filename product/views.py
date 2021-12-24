@@ -22,6 +22,7 @@ def shop(request):
         request.session['cat'] = cat
         sortcondition = request.POST.get('sort_order')
         request.session['sort'] = sortcondition
+        request.session.modified = True
 
         cat_titles = shop_categories.objects.all().filter(category_name__contains = search)
         print('THE CATEGORY TITLES AREeeeeeeeeeeeeeeeeeeeee' , cat_titles )
@@ -126,6 +127,7 @@ def shop_product_category(request, pk):
 
     cat = shop_categories.objects.get(id = pk)
     request.session['cat'] = cat.category_name
+    request.session.modified = True
 
     all_shop_products = shop_products.objects.all()
     search_cat = shop_categories.objects.all().filter(id = pk)

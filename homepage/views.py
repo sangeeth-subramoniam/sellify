@@ -13,6 +13,7 @@ def home(request):
     request.session.pop("search", None)
     request.session.pop("cat", None)
     request.session.pop("sort", None)
+    request.session.modified = True
 
     print('deleted the cookies')
 

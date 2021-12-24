@@ -25,7 +25,7 @@
             <br>
             <br>
 
-            <button class="btn btn-outline-primary signin-button" type="submit"> Signin </button>
+            <button class="btn btn-outline-primary signin-button" type="submit" onclick = "test()"> Signin </button>
             
             <br><br>
 
@@ -41,6 +41,14 @@
         </form>
     </div>
 </div>
+
+<script>
+    function test(){
+        alert('lets test')
+        alert('{{csrf_token}}')
+        alert('lets test end')
+    }
+</script>
 
 {% endblock %}
 

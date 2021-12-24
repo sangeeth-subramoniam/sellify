@@ -9,6 +9,8 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 # Create your views here.
 
 def signup(request):
@@ -56,15 +58,17 @@ def signup(request):
             user_form = User_form()
             user_profileform = user_profile_form
         
-        return render(request, "registration/signup.html", {'user_form': user_form , 'user_profileform' : user_profileform, 'registered' : registered  } )
+            return render(request, "registration/signup.html", {'user_form': user_form , 'user_profileform' : user_profileform, 'registered' : registered  } )
 
 
+@ensure_csrf_cookie
 def signin(request):
     if request.user.is_authenticated:
         return redirect('homepage:home')
     else:
         
-        if(request.method == "POST"):            
+        if(request.method == "POST"): 
+            print('entering post heeeyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')           
             username = request.POST.get('username')
             password = request.POST.get('password')
 
@@ -73,7 +77,7 @@ def signin(request):
             if user:
                 if user.is_active:
                     login(request,user)
-                    return HttpResponseRedirect(reverse('homepage:home'))
+                    return redirect('homepage:home')
                 
                 else:
                     return HttpResponse('account is NOT Active')
@@ -87,7 +91,7 @@ def signin(request):
                 return render(request,'registration/signin.html', context)
         
         else:
-            print('enter getttttttttttttttttttttttttttttttttttttttt')
+            print('enter getttttttttttttttttttttttttttttttttttttttt of signin')
             return render(request,'registration/signin.html')
 
 @login_required
