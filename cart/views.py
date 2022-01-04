@@ -4,7 +4,10 @@ from .models import cart, order
 from django.db.models import Sum
 import datetime
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
+@login_required
 def cart_home(request):
 
     user_cart = cart.objects.all().filter(cart_user = request.user , cart_status = "pending")
@@ -21,6 +24,7 @@ def cart_home(request):
 
     return render(request, 'cart/cart_home.html', context)
 
+@login_required
 def place_order(request):
 
     #lets add all pdt to order_list
@@ -55,6 +59,7 @@ def place_order(request):
 
     return redirect('cart:orderplaced')
 
+@login_required
 def view_orders(request):
 
     orders = order.objects.all().filter(created_by = request.user).order_by('-created_at')

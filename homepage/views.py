@@ -7,6 +7,7 @@ import datetime
 from product.models import shop_categories, shop_products
 
 # Create your views here.
+@login_required
 def home(request):
     print('Lets delete all cookies')
     
@@ -24,8 +25,10 @@ def home(request):
 
         return render(request,'landing/homepage.html',{'curr_user' : curruser , 'products':products})
     else:
+        print('authenticate to login page from inside the view and not the decorator')
         return redirect('registration:signin')
 
+@login_required
 def categories(request):
 
     categories = shop_categories.objects.all()
@@ -38,6 +41,7 @@ def categories(request):
     return render(request, 'landing/categories.html', context)
 
 
+@login_required
 def contactus(request):
     return render(request, 'landing/contactus.html')
 
@@ -64,11 +68,11 @@ def subscription(request):
     else:
         return redirect('homepage:home')
 
-
+@login_required
 def about(request):
     return render(request, 'about.html')
 
-
+@login_required
 def privacy(request):
     today = datetime.datetime.now()
 
@@ -78,15 +82,16 @@ def privacy(request):
     return render(request, 'landing/privacy_policy.html' , context)
 
 
-
+@login_required
 def index(request):
     return render(request, 'index.html')
 
+@login_required
 def about(request):
     return render(request, 'about.html')
 
 
-
+@login_required
 def singleproduct(request):
     return render(request, 'single-product.html')
 

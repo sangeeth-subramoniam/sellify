@@ -16,3 +16,17 @@ class user_profile_form(forms.ModelForm):
     class Meta:
         model = user_profile
         fields = ("phone", "age" , "address", "profile_picture", "bio")
+
+
+class user_profile_update_form(forms.ModelForm):
+
+    class Meta:
+        model = user_profile
+        fields = ["address","bio"]
+
+    
+class user_profile_picture_update_form(forms.ModelForm):
+
+    class Meta:
+        model = user_profile
+        fields = ["profile_picture" , ]

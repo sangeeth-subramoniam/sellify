@@ -32,7 +32,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'q1370d$tg0qqq=inq%i58ujzv=l1j4-jcp*^)hyjz%_scg!v5c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['sangeeth-sellify.herokuapp.com','127.0.0.1']
 
@@ -178,9 +178,15 @@ LOGIN_URL = '/register/signin'
 
 #during deploy use the below and set the confid variables in heroku since you cannot set environment vatriable in virtualenvv
 
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID_NEW")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY_NEW")
+#AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID_NEW")
+#AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY_NEW")
 
+AWS_ACCESS_KEY_ID = 'AKIATVGSGRPITBMTSVKT' 
+AWS_SECRET_ACCESS_KEY = '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'
+
+#since using virtual env you cannot wasily get the environment variable, using directly
+#AWS_ACCESS_KEY_ID = 'AKIATVGSGRPIZ25LH36M'
+#AWS_SECRET_ACCESS_KEY = '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'
 
 
 AWS_STORAGE_BUCKET_NAME = 'sangeeth-sellify'

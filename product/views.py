@@ -11,8 +11,11 @@ from django.db.models import Q
 from cart.models import cart
 from itertools import chain
 
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+@login_required
 def shop(request):
     if request.method == "POST": #POST REQUEST
 
@@ -122,7 +125,7 @@ def shop(request):
         
         return render(request, 'shopproducts/allproducts.html' , context)
 
-
+@login_required
 def shop_product_category(request, pk):
 
     cat = shop_categories.objects.get(id = pk)
@@ -150,7 +153,7 @@ def shop_product_category(request, pk):
     }
     return render(request, 'shopproducts/allproducts.html' , context)
 
-
+@login_required
 def shop_product_detail(request, pk):
 
     shop_product_detail = shop_products.objects.get(id = pk)
@@ -190,7 +193,7 @@ def shop_product_detail(request, pk):
         }
         return render(request, 'shopproducts/shop_singleproduct.html', context)
 
-
+@login_required
 def add_to_cart(request, pk):
     print('creating cart object')
     
@@ -208,7 +211,7 @@ def add_to_cart(request, pk):
 
     return redirect('cart:cart_home')
 
-
+@login_required
 def sell(request):
     if request.method == "POST":
         print('post is ', request.POST)
