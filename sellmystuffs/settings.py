@@ -176,17 +176,10 @@ LOGIN_URL = '/register/signin'
 
 #AWS
 
-#during deploy use the below and set the confid variables in heroku since you cannot set environment vatriable in virtualenvv
+#during deploy use the below and set the config variables in heroku since you cannot set environment vatriable in virtualenvv
 
-#AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID_NEW")
-#AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY_NEW")
-
-AWS_ACCESS_KEY_ID = 'AKIATVGSGRPITBMTSVKT' 
-AWS_SECRET_ACCESS_KEY = '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'
-
-#since using virtual env you cannot wasily get the environment variable, using directly
-#AWS_ACCESS_KEY_ID = 'AKIATVGSGRPIZ25LH36M'
-#AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID_NEW_2")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY_NEW_2")
 
 
 AWS_STORAGE_BUCKET_NAME = 'sangeeth-sellify'
